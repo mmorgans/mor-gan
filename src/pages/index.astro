@@ -1,16 +1,8 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import InteractiveBio from "../components/InteractiveBio.jsx";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Morgan Salisbury | Journalist, Advocate, Student">
+  <InteractiveBio client:load />
+</BaseLayout>

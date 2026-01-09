@@ -1,0 +1,44 @@
+---
+import "@fontsource/newsreader/300.css";
+import "@fontsource/newsreader/400.css";
+import "@fontsource/newsreader/400-italic.css";
+import "@fontsource/newsreader/500.css";
+import "@fontsource/newsreader/500-italic.css";
+import "../styles/global.css";
+
+const { title = "Morgan Salisbury | Journalist, Advocate, Student" } =
+  Astro.props;
+const description =
+  "The personal portfolio hub of Morgan Salisbury. Journalist, Privacy Advocate, and Political Science Student.";
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth bg-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mor-gan.com/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://mor-gan.com/" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body
+    class="bg-white text-zinc-900 antialiased font-serif selection:bg-zinc-200 selection:text-zinc-900"
+  >
+    <slot />
+  </body>
+</html>
