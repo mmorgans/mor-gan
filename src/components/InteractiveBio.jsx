@@ -37,19 +37,19 @@ const InteractiveBio = () => {
                         Morgan Salisbury.
                         <br className="mt-8 block" />
                         I am a{' '}
-                        <span className="whitespace-nowrap">
-                            <SimpleTrigger
-                                label="journalist"
-                                isActive={activeIdentity === 'journalist'}
-                                onClick={() => toggleIdentity('journalist')}
-                            />
-                            , an{' '}
-                            <SimpleTrigger
-                                label="advocate"
-                                isActive={activeIdentity === 'advocate'}
-                                onClick={() => toggleIdentity('advocate')}
-                            />
-                        </span>
+                        <SimpleTrigger
+                            label="journalist"
+                            isActive={activeIdentity === 'journalist'}
+                            onClick={() => toggleIdentity('journalist')}
+                        />
+                        ,
+                        <br className="md:hidden" />
+                        {' '}an{' '}
+                        <SimpleTrigger
+                            label="advocate"
+                            isActive={activeIdentity === 'advocate'}
+                            onClick={() => toggleIdentity('advocate')}
+                        />
                         , and a{' '}
                         <SimpleTrigger
                             label="student"
