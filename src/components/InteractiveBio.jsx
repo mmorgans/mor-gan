@@ -31,31 +31,36 @@ const InteractiveBio = () => {
                 <main id="main-content" className="min-h-screen bg-white selection:bg-gray-100 selection:text-black overflow-hidden">
                     {/* Main View - Slides left when detail is active */}
                     <motion.div
-                        className="min-h-screen flex items-start justify-center p-8 pt-24"
+                        className="min-h-screen flex items-center justify-start px-12 py-8"
                         animate={{ x: activeIdentity ? "-100%" : 0 }}
                         transition={springTransition}
                     >
-                        <div className="max-w-6xl w-full">
-                            <h1 className="font-serif text-3xl text-zinc-900 leading-tight text-left">
-                                Hi, I'm
-                                <br />
+                        <div className="max-w-lg w-full space-y-8">
+                            {/* Name Block */}
+                            <div className="font-serif text-3xl sm:text-4xl text-zinc-900 leading-tight">
+                                Hi, I'm<br />
                                 Morgan Salisbury.
-                                <br className="mt-8 block" />
+                            </div>
+
+                            {/* Identity Block */}
+                            <div className="font-serif text-3xl sm:text-4xl text-zinc-900 leading-tight">
                                 I am a{' '}
                                 <SimpleTrigger
                                     label="journalist"
                                     isActive={activeIdentity === 'journalist'}
                                     onClick={() => toggleIdentity('journalist')}
                                 />
-                                ,
-                                <br />
-                                {' '}an{' '}
-                                <SimpleTrigger
-                                    label="advocate"
-                                    isActive={activeIdentity === 'advocate'}
-                                    onClick={() => toggleIdentity('advocate')}
-                                />
-                                , and a{' '}
+                                ,{' '}
+                                <span className="whitespace-nowrap">
+                                    an{' '}
+                                    <SimpleTrigger
+                                        label="advocate"
+                                        isActive={activeIdentity === 'advocate'}
+                                        onClick={() => toggleIdentity('advocate')}
+                                    />
+                                </span>
+                                ,<br />
+                                and a{' '}
                                 <span className="whitespace-nowrap">
                                     <SimpleTrigger
                                         label="student"
@@ -64,25 +69,41 @@ const InteractiveBio = () => {
                                     />
                                     .
                                 </span>
-                                <br className="mt-8 block" />
-                                Here's my{' '}
-                                <SimpleTrigger
-                                    label="resume"
-                                    isActive={activeIdentity === 'resume'}
-                                    onClick={() => toggleIdentity('resume')}
-                                />
-                                .
-                                <br />
-                                I would love to
-                                <br />
+                            </div>
+
+                            {/* Work & Resume Block */}
+                            <div className="font-serif text-3xl sm:text-4xl text-zinc-900 leading-tight">
+                                Here's a selection of my{' '}
                                 <a
-                                    href="mailto:morgan@mor-gan.com"
+                                    href="/work"
                                     className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
                                 >
-                                    work together
+                                    work
                                 </a>
-                                !
-                            </h1>
+                                , and my{' '}
+                                <span className="whitespace-nowrap">
+                                    <SimpleTrigger
+                                        label="resume"
+                                        isActive={activeIdentity === 'resume'}
+                                        onClick={() => toggleIdentity('resume')}
+                                    />
+                                    .
+                                </span>
+                            </div>
+
+                            {/* CTA Block */}
+                            <div className="font-serif text-3xl sm:text-4xl text-zinc-900 leading-tight">
+                                I would love to{' '}
+                                <span className="whitespace-nowrap">
+                                    <a
+                                        href="mailto:morgan@mor-gan.com"
+                                        className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
+                                    >
+                                        work together
+                                    </a>
+                                    !
+                                </span>
+                            </div>
                         </div>
                     </motion.div>
 
@@ -172,28 +193,35 @@ const InteractiveBio = () => {
 
             {/* ==================== DESKTOP LAYOUT ==================== */}
             {!isMobile && (
-                <main id="main-content" className="min-h-screen flex items-start justify-center p-8 pt-48 bg-white selection:bg-gray-100 selection:text-black relative">
+                <main id="main-content" className="min-h-screen flex items-center justify-center px-16 py-8 bg-white selection:bg-gray-100 selection:text-black relative">
                     <div className="max-w-6xl w-full grid grid-cols-12 gap-24 items-start">
                         {/* Main Headline - Sticky */}
-                        <div className="col-span-7 sticky top-32">
-                            <h1 className="font-serif text-5xl lg:text-6xl text-zinc-900 leading-tight text-left">
-                                Hi, I'm
-                                <br />
+                        <div className="col-span-7 sticky top-32 space-y-6">
+                            {/* Name Block */}
+                            <div className="font-serif text-4xl lg:text-5xl xl:text-6xl text-zinc-900 leading-tight">
+                                Hi, I'm<br />
                                 Morgan Salisbury.
-                                <br className="mt-8 block" />
+                            </div>
+
+                            {/* Identity Block */}
+                            <div className="font-serif text-4xl lg:text-5xl xl:text-6xl text-zinc-900 leading-tight">
                                 I am a{' '}
                                 <SimpleTrigger
                                     label="journalist"
                                     isActive={activeIdentity === 'journalist'}
                                     onClick={() => toggleIdentity('journalist')}
                                 />
-                                , an{' '}
-                                <SimpleTrigger
-                                    label="advocate"
-                                    isActive={activeIdentity === 'advocate'}
-                                    onClick={() => toggleIdentity('advocate')}
-                                />
-                                , and a{' '}
+                                ,{' '}
+                                <span className="whitespace-nowrap">
+                                    an{' '}
+                                    <SimpleTrigger
+                                        label="advocate"
+                                        isActive={activeIdentity === 'advocate'}
+                                        onClick={() => toggleIdentity('advocate')}
+                                    />
+                                </span>
+                                ,<br />
+                                and a{' '}
                                 <span className="whitespace-nowrap">
                                     <SimpleTrigger
                                         label="student"
@@ -202,25 +230,41 @@ const InteractiveBio = () => {
                                     />
                                     .
                                 </span>
-                                <br className="mt-8 block" />
-                                Here's my{' '}
-                                <SimpleTrigger
-                                    label="resume"
-                                    isActive={activeIdentity === 'resume'}
-                                    onClick={() => toggleIdentity('resume')}
-                                />
-                                .
-                                <br />
-                                I would love to
-                                <br />
+                            </div>
+
+                            {/* Work & Resume Block */}
+                            <div className="font-serif text-4xl lg:text-5xl xl:text-6xl text-zinc-900 leading-tight">
+                                Here's a selection of my{' '}
                                 <a
-                                    href="mailto:morgan@mor-gan.com"
+                                    href="/work"
                                     className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
                                 >
-                                    work together
+                                    work
                                 </a>
-                                !
-                            </h1>
+                                , and my{' '}
+                                <span className="whitespace-nowrap">
+                                    <SimpleTrigger
+                                        label="resume"
+                                        isActive={activeIdentity === 'resume'}
+                                        onClick={() => toggleIdentity('resume')}
+                                    />
+                                    .
+                                </span>
+                            </div>
+
+                            {/* CTA Block */}
+                            <div className="font-serif text-4xl lg:text-5xl xl:text-6xl text-zinc-900 leading-tight">
+                                I would love to{' '}
+                                <span className="whitespace-nowrap">
+                                    <a
+                                        href="mailto:morgan@mor-gan.com"
+                                        className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
+                                    >
+                                        work together
+                                    </a>
+                                    !
+                                </span>
+                            </div>
                         </div>
 
                         {/* Content Area - Side Column */}

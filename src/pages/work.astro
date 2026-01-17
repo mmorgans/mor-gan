@@ -1,0 +1,219 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Work items data
+const journalism = [
+    {
+        title: "Investigation: School Surveillance Systems",
+        description:
+            "An in-depth look at algorithmic monitoring in K-12 education",
+        publication: "Student Press",
+        date: "2024",
+        href: "/work/school-surveillance",
+    },
+    {
+        title: "Feature: Privacy in the Digital Age",
+        description:
+            "How students are fighting back against invasive technology",
+        publication: "Campus Chronicle",
+        date: "2024",
+        href: "/work/privacy-feature",
+    },
+    {
+        title: "News: Federal Lawsuit Filed Against School District",
+        description: "Breaking coverage of civil rights complaint",
+        publication: "Student Press",
+        date: "2023",
+        href: "/work/lawsuit-coverage",
+    },
+];
+
+const technology = [
+    {
+        title: "Morgan Consulting",
+        description:
+            "Custom hardware solutions and IT consultation for accessibility",
+        href: "https://consulting.mor-gan.com",
+        external: true,
+    },
+    {
+        title: "Research Data Pipeline",
+        description:
+            "Soil analysis and dataset modeling with R and Google Earth Engine",
+        href: "/work/research-pipeline",
+    },
+    {
+        title: "Lab Documentation System",
+        description: "Technical documentation platform for research workflows",
+        href: "https://docs.mor-gan.com",
+        external: true,
+    },
+];
+
+const advocacy = [
+    {
+        title: "Federal Civil Rights Lawsuit",
+        description:
+            "Co-plaintiff challenging algorithmic surveillance in schools",
+        date: "Ongoing",
+        href: "/work/lawsuit",
+    },
+    {
+        title: "NSPA National Conference Presentation",
+        description:
+            "Speaking on student privacy rights and surveillance technology",
+        date: "2024",
+        href: "/work/nspa-presentation",
+    },
+    {
+        title: "University of Kansas Lecture",
+        description: "Guest lecture on privacy rights and student advocacy",
+        date: "2024",
+        href: "/work/ku-lecture",
+    },
+];
+---
+
+<BaseLayout title="Work | Morgan Salisbury">
+    <main
+        id="main-content"
+        class="min-h-screen bg-white selection:bg-gray-100 selection:text-black"
+    >
+        <div class="max-w-4xl mx-auto px-8 py-24">
+            <!-- Back Link -->
+            <a
+                href="/"
+                class="inline-flex items-center gap-2 text-zinc-400 hover:text-zinc-600 transition-colors mb-16 group"
+            >
+                <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="group-hover:-translate-x-1 transition-transform"
+                >
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                <span class="font-serif">Back</span>
+            </a>
+
+            <!-- Page Title -->
+            <h1 class="font-serif text-4xl md:text-5xl text-zinc-900 mb-16">
+                My Work
+            </h1>
+
+            <!-- Journalism Section -->
+            <section class="mb-16">
+                <h2
+                    class="font-sans text-xs font-bold uppercase tracking-widest text-zinc-400 mb-6"
+                >
+                    Journalism
+                </h2>
+                <div class="space-y-6">
+                    {
+                        journalism.map((item) => (
+                            <a href={item.href} class="block group">
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <h3 class="font-serif text-xl text-zinc-900 group-hover:text-zinc-600 transition-colors">
+                                            {item.title}
+                                        </h3>
+                                        <p class="text-zinc-500 font-serif mt-1">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                    {(item.publication || item.date) && (
+                                        <span class="text-zinc-400 text-sm font-serif whitespace-nowrap">
+                                            {item.publication}
+                                            {item.publication &&
+                                                item.date &&
+                                                " · "}
+                                            {item.date}
+                                        </span>
+                                    )}
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <!-- Technology Section -->
+            <section class="mb-16">
+                <h2
+                    class="font-sans text-xs font-bold uppercase tracking-widest text-zinc-400 mb-6"
+                >
+                    Technology
+                </h2>
+                <div class="space-y-6">
+                    {
+                        technology.map((item) => (
+                            <a
+                                href={item.href}
+                                target={item.external ? "_blank" : undefined}
+                                rel={
+                                    item.external
+                                        ? "noopener noreferrer"
+                                        : undefined
+                                }
+                                class="block group"
+                            >
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <h3 class="font-serif text-xl text-zinc-900 group-hover:text-zinc-600 transition-colors">
+                                            {item.title}{" "}
+                                            {item.external && (
+                                                <span class="text-zinc-400">
+                                                    ↗
+                                                </span>
+                                            )}
+                                        </h3>
+                                        <p class="text-zinc-500 font-serif mt-1">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <!-- Advocacy Section -->
+            <section class="mb-16">
+                <h2
+                    class="font-sans text-xs font-bold uppercase tracking-widest text-zinc-400 mb-6"
+                >
+                    Advocacy
+                </h2>
+                <div class="space-y-6">
+                    {
+                        advocacy.map((item) => (
+                            <a href={item.href} class="block group">
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <h3 class="font-serif text-xl text-zinc-900 group-hover:text-zinc-600 transition-colors">
+                                            {item.title}
+                                        </h3>
+                                        <p class="text-zinc-500 font-serif mt-1">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                    {item.date && (
+                                        <span class="text-zinc-400 text-sm font-serif whitespace-nowrap">
+                                            {item.date}
+                                        </span>
+                                    )}
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+            </section>
+        </div>
+    </main>
+</BaseLayout>
