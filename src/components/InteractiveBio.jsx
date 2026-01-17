@@ -1,5 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+
+// Track prefetched URLs to avoid duplicate requests
+const prefetchedUrls = new Set();
+
+// Prefetch using fetch for more reliable caching
+const prefetchUrl = (url) => {
+    if (prefetchedUrls.has(url)) return;
+    prefetchedUrls.add(url);
+
+    // Use fetch with low priority to preload the page
+    fetch(url, { priority: 'low' }).catch(() => { });
+};
 
 const InteractiveBio = () => {
     const [activeIdentity, setActiveIdentity] = useState(null);
@@ -12,10 +24,10 @@ const InteractiveBio = () => {
 
     const goBack = () => setActiveIdentity(null);
 
-    // Shared spring transition
+    // Shared spring transition - high damping for no recoil
     const springTransition = prefersReducedMotion
         ? { duration: 0 }
-        : { type: "spring", damping: 30, stiffness: 300 };
+        : { type: "spring", damping: 40, stiffness: 300 };
 
     // Mobile slide variants
     const mobileSlideVariants = {
@@ -76,6 +88,7 @@ const InteractiveBio = () => {
                                 Here's a selection of my{' '}
                                 <a
                                     href="/work"
+                                    onMouseEnter={() => prefetchUrl('/work')}
                                     className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
                                 >
                                     work
@@ -175,7 +188,7 @@ const InteractiveBio = () => {
                                                                     rel={link.external ? "noopener noreferrer" : undefined}
                                                                     className="hover:text-zinc-900 transition-colors w-max hover:underline decoration-zinc-300 underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
                                                                 >
-                                                                    {link.label} {link.external && '↗'}
+                                                                    {link.label} {link.external && <svg className="inline-block w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>}
                                                                 </a>
                                                             ))}
                                                         </div>
@@ -237,6 +250,7 @@ const InteractiveBio = () => {
                                 Here's a selection of my{' '}
                                 <a
                                     href="/work"
+                                    onMouseEnter={() => prefetchUrl('/work')}
                                     className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
                                 >
                                     work
@@ -308,7 +322,7 @@ const InteractiveBio = () => {
                                                                     rel={link.external ? "noopener noreferrer" : undefined}
                                                                     className="hover:text-zinc-900 transition-colors w-max hover:underline decoration-zinc-300 underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
                                                                 >
-                                                                    {link.label} {link.external && '↗'}
+                                                                    {link.label} {link.external && <svg className="inline-block w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>}
                                                                 </a>
                                                             ))}
                                                         </div>
@@ -383,6 +397,7 @@ const BIO_CONTENT = {
         text: "I believe privacy is a human right. Alongside two colleagues, I initiated a federal lawsuit challenging algorithmic surveillance in our former school district. I've lectured on surveillance at the University of Kansas and presented at the National Scholastic Press Association. We continue to advocate for students, and our fight has been the subject of reporting by The Washington Post, the Associated Press, and The New York Times.",
         linksTitle: "Featured In",
         links: [
+            { label: "Kansas Reflector", url: "https://kansasreflector.com/2024/04/22/unapologetically-loud-how-student-journalists-fought-a-kansas-district-over-spyware-and-won/", external: true },
             { label: "The Washington Post", url: "https://www.washingtonpost.com/nation/2025/09/24/students-lawsuit-ai-tool-gaggle/", external: true },
             { label: "Associated Press", url: "https://apnews.com/article/ai-school-surveillance-gaggle-goguardian-bark-8c531cde8f9aee0b1ef06cfce109724a", external: true },
             { label: "The New York Times", url: "https://www.nytimes.com/2024/12/18/learning/should-schools-spy-on-student-devices-to-prevent-self-harm.html", external: true }
