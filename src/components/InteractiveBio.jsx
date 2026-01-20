@@ -83,17 +83,9 @@ const InteractiveBio = () => {
                                 </span>
                             </div>
 
-                            {/* Work & Resume Block */}
+                            {/* Resume Block */}
                             <div className="font-serif text-3xl sm:text-4xl text-zinc-900 leading-tight">
-                                Here's a selection of my{' '}
-                                <a
-                                    href="/work"
-                                    onMouseEnter={() => prefetchUrl('/work')}
-                                    className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
-                                >
-                                    work
-                                </a>
-                                , and my{' '}
+                                Here's my{' '}
                                 <span className="whitespace-nowrap">
                                     <SimpleTrigger
                                         label="resume"
@@ -245,17 +237,9 @@ const InteractiveBio = () => {
                                 </span>
                             </div>
 
-                            {/* Work & Resume Block */}
+                            {/* Resume Block */}
                             <div className="font-serif text-4xl lg:text-5xl xl:text-6xl text-zinc-900 leading-tight">
-                                Here's a selection of my{' '}
-                                <a
-                                    href="/work"
-                                    onMouseEnter={() => prefetchUrl('/work')}
-                                    className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
-                                >
-                                    work
-                                </a>
-                                , and my{' '}
+                                Here's my{' '}
                                 <span className="whitespace-nowrap">
                                     <SimpleTrigger
                                         label="resume"
