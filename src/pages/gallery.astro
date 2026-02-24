@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PhotoGallery from "../components/PhotoGallery.jsx";
+---
+
+<BaseLayout title="Photos | Morgan Salisbury">
+    <main
+        id="main-content"
+        class="min-h-screen bg-white selection:bg-gray-100 selection:text-black"
+    >
+        <div class="max-w-6xl mx-auto px-8 py-24">
+            <!-- Back Link -->
+            <a
+                href="/"
+                class="inline-flex items-center gap-2 text-zinc-400 hover:text-zinc-600 transition-colors mb-16 group"
+            >
+                <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="group-hover:-translate-x-1 transition-transform"
+                >
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                <span class="font-serif">Back</span>
+            </a>
+
+            <!-- Page Title -->
+            <h1 class="font-serif text-4xl md:text-5xl text-zinc-900 mb-4">
+                Photos
+            </h1>
+            <p class="text-zinc-500 font-serif text-lg mb-16">
+                Click photos to flip and see captions on the back
+            </p>
+
+            <!-- Photo Gallery -->
+            <PhotoGallery client:load />
+        </div>
+    </main>
+</BaseLayout>

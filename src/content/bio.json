@@ -1,0 +1,78 @@
+{
+  "journalist": {
+    "text": "I'm a multimedia journalism student at KU studying Political Science. In high school, I was Editor-in-Chief and ran the broadcast program for our student press. I investigated our school district's use of AI surveillance software. That investigation led to a federal civil rights lawsuit I'm still fighting.",
+    "links": []
+  },
+  "advocate": {
+    "text": "In 2024, two friends and I filed a federal lawsuit against our former school district for using AI to monitor everything we did on school devices. That case is ongoing. I've spoken about it at journalism conferences including the National Scholastic Press Association. Our fight has been covered by The Washington Post, Associated Press, and The New York Times.",
+    "linksTitle": "Featured In",
+    "links": [
+      {
+        "label": "Kansas Reflector",
+        "url": "https://kansasreflector.com/2024/04/22/unapologetically-loud-how-student-journalists-fought-a-kansas-district-over-spyware-and-won/",
+        "external": true
+      },
+      {
+        "label": "The Washington Post",
+        "url": "https://www.washingtonpost.com/nation/2025/09/24/students-lawsuit-ai-tool-gaggle/",
+        "external": true
+      },
+      {
+        "label": "Associated Press",
+        "url": "https://apnews.com/article/ai-school-surveillance-gaggle-goguardian-bark-8c531cde8f9aee0b1ef06cfce109724a",
+        "external": true
+      },
+      {
+        "label": "The New York Times",
+        "url": "https://www.nytimes.com/2024/12/18/learning/should-schools-spy-on-student-devices-to-prevent-self-harm.html",
+        "external": true
+      }
+    ]
+  },
+  "student": {
+    "text": "I study Multimedia Journalism and Political Science at the University of Kansas. As an Undergraduate Research Fellow, I analyze soil composition and model environmental datasets in R and Google Earth Engine. I run Morgan Consulting, building custom hardware and helping people understand their technology. I sail a Compac 19 at Clinton Lake, and I've used Arch Linux since middle school. This fall I'm studying at the University of Hong Kong.",
+    "links": [
+      {
+        "label": "Morgan Consulting",
+        "url": "https://consulting.mor-gan.com",
+        "external": true
+      },
+      {
+        "label": "Lab Docs",
+        "url": "https://docs.mor-gan.com",
+        "external": true
+      }
+    ]
+  },
+  "contact": {
+    "text": "I'm interested in journalism opportunities, speaking engagements about student press freedom and surveillance, and technology consulting work. Email me at morgan@mor-gan.com or reach out on social media.",
+    "linksTitle": "Connect",
+    "links": [
+      {
+        "label": "morgan@mor-gan.com",
+        "url": "mailto:morgan@mor-gan.com",
+        "external": false
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://linkedin.com/in/morgan-salisbury",
+        "external": true
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/morganbarber",
+        "external": true
+      }
+    ]
+  },
+  "photos": {
+    "text": "A collection of moments from sailing, research, travels, and daily life.",
+    "links": [
+      {
+        "label": "View Gallery",
+        "url": "/gallery",
+        "external": false
+      }
+    ]
+  }
+}

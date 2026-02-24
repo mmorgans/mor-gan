@@ -1,0 +1,73 @@
+{
+  "journalism": [
+    {
+      "title": "Investigation: School Surveillance Systems",
+      "description": "An in-depth look at algorithmic monitoring in K-12 education",
+      "publication": "Student Press",
+      "date": "2024",
+      "href": "/work/school-surveillance",
+      "type": "article"
+    },
+    {
+      "title": "Feature: Privacy in the Digital Age",
+      "description": "How students are fighting back against invasive technology",
+      "publication": "Campus Chronicle",
+      "date": "2024",
+      "href": "/work/privacy-feature",
+      "type": "article"
+    },
+    {
+      "title": "News: Federal Lawsuit Filed Against School District",
+      "description": "Breaking coverage of civil rights complaint",
+      "publication": "Student Press",
+      "date": "2023",
+      "href": "/work/lawsuit-coverage",
+      "type": "article"
+    }
+  ],
+  "technology": [
+    {
+      "title": "Morgan Consulting",
+      "description": "Custom hardware solutions and IT consultation for accessibility",
+      "href": "https://consulting.mor-gan.com",
+      "external": true,
+      "type": "project"
+    },
+    {
+      "title": "Research Data Pipeline",
+      "description": "Soil analysis and dataset modeling with R and Google Earth Engine",
+      "href": "/work/research-pipeline",
+      "type": "project"
+    },
+    {
+      "title": "Lab Documentation System",
+      "description": "Technical documentation platform for research workflows",
+      "href": "https://docs.mor-gan.com",
+      "external": true,
+      "type": "project"
+    }
+  ],
+  "advocacy": [
+    {
+      "title": "Federal Civil Rights Lawsuit",
+      "description": "Co-plaintiff challenging algorithmic surveillance in schools",
+      "date": "Ongoing",
+      "href": "/work/lawsuit",
+      "type": "presentation"
+    },
+    {
+      "title": "NSPA National Conference Presentation",
+      "description": "Speaking on student privacy rights and surveillance technology",
+      "date": "2024",
+      "href": "/work/nspa-presentation",
+      "type": "presentation"
+    },
+    {
+      "title": "University of Kansas Lecture",
+      "description": "Guest lecture on privacy rights and student advocacy",
+      "date": "2024",
+      "href": "/work/ku-lecture",
+      "type": "presentation"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "photos": [
+    {
+      "image": "/images/gallery/placeholder-1.jpg",
+      "alt": "Placeholder photo 1",
+      "caption": "Add your first photo by editing /src/content/gallery.json",
+      "date": "2026",
+      "location": "Example Location"
+    },
+    {
+      "image": "/images/gallery/placeholder-2.jpg",
+      "alt": "Placeholder photo 2",
+      "caption": "Click photos to flip and see captions on the back",
+      "date": "2026",
+      "location": "Example Location"
+    },
+    {
+      "image": "/images/gallery/placeholder-3.jpg",
+      "alt": "Placeholder photo 3",
+      "caption": "Photos display in a responsive grid layout",
+      "date": "2026",
+      "location": "Example Location"
+    }
+  ]
+}

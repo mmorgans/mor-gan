@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import bioData from '../content/bio.json';
 
 // Track prefetched URLs to avoid duplicate requests
 const prefetchedUrls = new Set();
@@ -96,17 +97,29 @@ const InteractiveBio = () => {
                                 </span>
                             </div>
 
+                            {/* Photos Block */}
+                            <div className="font-serif text-3xl sm:text-4xl text-zinc-900 leading-tight">
+                                Check out my{' '}
+                                <span className="whitespace-nowrap">
+                                    <SimpleTrigger
+                                        label="photos"
+                                        isActive={activeIdentity === 'photos'}
+                                        onClick={() => toggleIdentity('photos')}
+                                    />
+                                    .
+                                </span>
+                            </div>
+
                             {/* CTA Block */}
                             <div className="font-serif text-3xl sm:text-4xl text-zinc-900 leading-tight">
-                                I would love to{' '}
+                                Want to{' '}
                                 <span className="whitespace-nowrap">
-                                    <a
-                                        href="mailto:morgan@mor-gan.com"
-                                        className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
-                                    >
-                                        work together
-                                    </a>
-                                    !
+                                    <SimpleTrigger
+                                        label="get in touch"
+                                        isActive={activeIdentity === 'contact'}
+                                        onClick={() => toggleIdentity('contact')}
+                                    />
+                                    ?
                                 </span>
                             </div>
                         </div>
@@ -178,6 +191,7 @@ const InteractiveBio = () => {
                                                                     href={link.url}
                                                                     target={link.external ? "_blank" : undefined}
                                                                     rel={link.external ? "noopener noreferrer" : undefined}
+                                                                    onMouseEnter={!link.external ? () => prefetchUrl(link.url) : undefined}
                                                                     className="hover:text-zinc-900 transition-colors w-max hover:underline decoration-zinc-300 underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
                                                                 >
                                                                     {link.label} {link.external && <svg className="inline-block w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>}
@@ -250,17 +264,29 @@ const InteractiveBio = () => {
                                 </span>
                             </div>
 
+                            {/* Photos Block */}
+                            <div className="font-serif text-4xl lg:text-5xl xl:text-6xl text-zinc-900 leading-tight">
+                                Check out my{' '}
+                                <span className="whitespace-nowrap">
+                                    <SimpleTrigger
+                                        label="photos"
+                                        isActive={activeIdentity === 'photos'}
+                                        onClick={() => toggleIdentity('photos')}
+                                    />
+                                    .
+                                </span>
+                            </div>
+
                             {/* CTA Block */}
                             <div className="font-serif text-4xl lg:text-5xl xl:text-6xl text-zinc-900 leading-tight">
-                                I would love to{' '}
+                                Want to{' '}
                                 <span className="whitespace-nowrap">
-                                    <a
-                                        href="mailto:morgan@mor-gan.com"
-                                        className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
-                                    >
-                                        work together
-                                    </a>
-                                    !
+                                    <SimpleTrigger
+                                        label="get in touch"
+                                        isActive={activeIdentity === 'contact'}
+                                        onClick={() => toggleIdentity('contact')}
+                                    />
+                                    ?
                                 </span>
                             </div>
                         </div>
@@ -304,6 +330,7 @@ const InteractiveBio = () => {
                                                                     href={link.url}
                                                                     target={link.external ? "_blank" : undefined}
                                                                     rel={link.external ? "noopener noreferrer" : undefined}
+                                                                    onMouseEnter={!link.external ? () => prefetchUrl(link.url) : undefined}
                                                                     className="hover:text-zinc-900 transition-colors w-max hover:underline decoration-zinc-300 underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
                                                                 >
                                                                     {link.label} {link.external && <svg className="inline-block w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>}
@@ -372,28 +399,9 @@ const useIsMobile = (breakpoint = 768) => {
     return isMobile;
 };
 
+// Build BIO_CONTENT from JSON data, adding the resume component
 const BIO_CONTENT = {
-    journalist: {
-        text: "I'm a visual storyteller studying Journalism and Political Science. As a high school Editor-in-Chief and Broadcast Producer for student press, I used every medium available to me to make stories accessible and hold power accountable. My work started the federal civil rights lawsuit I am now fighting.",
-        links: []
-    },
-    advocate: {
-        text: "I believe privacy is a human right. Alongside two colleagues, I initiated a federal lawsuit challenging algorithmic surveillance in our former school district. I've lectured on surveillance at the University of Kansas and presented at the National Scholastic Press Association. We continue to advocate for students, and our fight has been the subject of reporting by The Washington Post, the Associated Press, and The New York Times.",
-        linksTitle: "Featured In",
-        links: [
-            { label: "Kansas Reflector", url: "https://kansasreflector.com/2024/04/22/unapologetically-loud-how-student-journalists-fought-a-kansas-district-over-spyware-and-won/", external: true },
-            { label: "The Washington Post", url: "https://www.washingtonpost.com/nation/2025/09/24/students-lawsuit-ai-tool-gaggle/", external: true },
-            { label: "Associated Press", url: "https://apnews.com/article/ai-school-surveillance-gaggle-goguardian-bark-8c531cde8f9aee0b1ef06cfce109724a", external: true },
-            { label: "The New York Times", url: "https://www.nytimes.com/2024/12/18/learning/should-schools-spy-on-student-devices-to-prevent-self-harm.html", external: true }
-        ]
-    },
-    student: {
-        text: "I study Multimedia Journalism and Political Science at the University of Kansas. I am an Undergraduate Research Fellow, where I do soil analysis and model massive datasets in R and Google Earth Engine. I also founded Morgan Consulting, where I build custom hardware and provide consultation and support to make technology accessible for everyone.",
-        links: [
-            { label: "Morgan Consulting", url: "https://consulting.mor-gan.com", external: true },
-            { label: "Lab Docs", url: "https://docs.mor-gan.com", external: true }
-        ]
-    },
+    ...bioData,
     resume: {
         // Resume has a unique layout, so we render a custom component structure
         component: (
