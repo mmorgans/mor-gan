@@ -421,11 +421,11 @@ const BIO_CONTENT = {
                     <div>
                         <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4">Competencies</h3>
                         <ul className="space-y-2 font-serif text-lg">
+                            <li>Investigative Journalism</li>
                             <li>Scientific Data Analysis</li>
                             <li>IT Infrastructure & Support</li>
-                            <li>Multimedia Storytelling</li>
-                            <li>Investigative Journalism</li>
                             <li>Civic Advocacy & Policy</li>
+                            <li>Multimedia Storytelling</li>
                         </ul>
                     </div>
                     <div>
@@ -433,7 +433,7 @@ const BIO_CONTENT = {
                         <ul className="space-y-2 font-serif text-lg">
                             <li>Featured: New York Times, AP, Washington Post, Kansas Reflector</li>
                             <li>Finalist: SPLC Courage in Student Journalism Award</li>
-                            <li>Speaker: NSPA National Conference</li>
+                            <li>Speaker: NSPA National Conference, CSPA National Conference, KSPA Regional Conference</li>
                             <li>Research Fellow: Oregon State University & The University of Kansas</li>
                         </ul>
                     </div>
