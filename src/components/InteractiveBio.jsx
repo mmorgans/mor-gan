@@ -414,7 +414,7 @@ const BIO_CONTENT = {
                     <a href="/Morgan_Salisbury_Resume.pdf" download className="bg-zinc-900 text-white px-8 py-4 rounded-full font-sans text-sm font-medium tracking-wide hover:bg-zinc-700 transition-colors shadow-lg shadow-zinc-200 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-900 focus-visible:outline-none">
                         Download PDF
                     </a>
-                    <span className="text-zinc-400 italic font-serif">Jan 2026</span>
+                    <span className="text-zinc-400 italic font-serif">February 2026</span>
                 </div>
 
                 <div className="grid grid-cols-1 gap-8 text-zinc-600">
