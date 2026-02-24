@@ -97,7 +97,7 @@ const InteractiveBio = () => {
                                 </span>
                             </div>
 
-                            {/* Photos Block */}
+                            {/* Photos Block
                             <div className="font-serif text-3xl sm:text-4xl text-zinc-900 leading-tight">
                                 Check out my{' '}
                                 <span className="whitespace-nowrap">
@@ -109,17 +109,19 @@ const InteractiveBio = () => {
                                     .
                                 </span>
                             </div>
+                            */}
 
                             {/* CTA Block */}
                             <div className="font-serif text-3xl sm:text-4xl text-zinc-900 leading-tight">
-                                Want to{' '}
+                                I would love to{' '}
                                 <span className="whitespace-nowrap">
-                                    <SimpleTrigger
-                                        label="get in touch"
-                                        isActive={activeIdentity === 'contact'}
-                                        onClick={() => toggleIdentity('contact')}
-                                    />
-                                    ?
+                                    <a
+                                        href="mailto:morgan@mor-gan.com"
+                                        className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
+                                    >
+                                        work together
+                                    </a>
+                                    !
                                 </span>
                             </div>
                         </div>
@@ -264,7 +266,7 @@ const InteractiveBio = () => {
                                 </span>
                             </div>
 
-                            {/* Photos Block */}
+                            {/* Photos Block
                             <div className="font-serif text-4xl lg:text-5xl xl:text-6xl text-zinc-900 leading-tight">
                                 Check out my{' '}
                                 <span className="whitespace-nowrap">
@@ -276,17 +278,19 @@ const InteractiveBio = () => {
                                     .
                                 </span>
                             </div>
+                            */}
 
                             {/* CTA Block */}
                             <div className="font-serif text-4xl lg:text-5xl xl:text-6xl text-zinc-900 leading-tight">
-                                Want to{' '}
+                                I would love to{' '}
                                 <span className="whitespace-nowrap">
-                                    <SimpleTrigger
-                                        label="get in touch"
-                                        isActive={activeIdentity === 'contact'}
-                                        onClick={() => toggleIdentity('contact')}
-                                    />
-                                    ?
+                                    <a
+                                        href="mailto:morgan@mor-gan.com"
+                                        className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
+                                    >
+                                        work together
+                                    </a>
+                                    !
                                 </span>
                             </div>
                         </div>
