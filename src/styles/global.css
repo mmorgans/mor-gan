@@ -38,3 +38,62 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+/* Subtle hint animation for interactive words */
+@keyframes hintUnderline {
+    0%, 100% {
+        text-decoration: none;
+    }
+    30%, 70% {
+        text-decoration: underline;
+        text-decoration-color: rgba(161, 161, 170, 0.5);
+        text-underline-offset: 4px;
+        text-decoration-thickness: 1px;
+    }
+}
+
+.animate-hint-underline {
+    animation: hintUnderline 2s ease-in-out 1.5s 2;
+}
+
+/* Pure CSS glisten overlay for polaroids */
+.polaroid-glisten-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        105deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(255, 255, 255, 0.08) 42%,
+        rgba(255, 255, 255, 0.35) 46%,
+        rgba(255, 255, 255, 0.55) 50%,
+        rgba(255, 255, 255, 0.35) 54%,
+        rgba(255, 255, 255, 0.08) 58%,
+        transparent 60%,
+        transparent 100%
+    );
+    background-size: 300% 100%;
+    background-position: 200% 0;
+    transition: background-position 0s ease;
+}
+
+.polaroid-item:hover .polaroid-glisten-overlay {
+    background-position: -200% 0;
+    transition: background-position 0.7s ease-in-out;
+}
+
+/* Polaroid base transition for smooth shadow changes */
+.polaroid-item {
+    transition: box-shadow 0.3s ease-out;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .animate-hint-underline {
+        animation: none;
+    }
+    .polaroid-glisten-overlay {
+        display: none;
+    }
+}

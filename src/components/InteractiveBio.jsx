@@ -1,6 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import bioData from '../content/bio.json';
+
+// Format current month and year for resume section
+const getCurrentDate = () => {
+    const now = new Date();
+    return now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+};
 
 // Track prefetched URLs to avoid duplicate requests
 const prefetchedUrls = new Set();
@@ -62,6 +68,7 @@ const InteractiveBio = () => {
                                     label="journalist"
                                     isActive={activeIdentity === 'journalist'}
                                     onClick={() => toggleIdentity('journalist')}
+                                    showHint={true}
                                 />
                                 ,{' '}
                                 <span className="whitespace-nowrap">
@@ -113,17 +120,16 @@ const InteractiveBio = () => {
 
                             {/* CTA Block */}
                             <div className="font-serif text-3xl sm:text-4xl text-zinc-900 leading-tight">
-                                I would love to{' '}
                                 <span className="whitespace-nowrap">
-                                    <a
-                                        href="mailto:morgan@mor-gan.com"
-                                        className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
-                                    >
-                                        work together
-                                    </a>
+                                    <SimpleTrigger
+                                        label="Say hello"
+                                        isActive={activeIdentity === 'contact'}
+                                        onClick={() => toggleIdentity('contact')}
+                                    />
                                     !
                                 </span>
                             </div>
+
                         </div>
                     </motion.div>
 
@@ -231,6 +237,7 @@ const InteractiveBio = () => {
                                     label="journalist"
                                     isActive={activeIdentity === 'journalist'}
                                     onClick={() => toggleIdentity('journalist')}
+                                    showHint={true}
                                 />
                                 ,{' '}
                                 <span className="whitespace-nowrap">
@@ -282,14 +289,12 @@ const InteractiveBio = () => {
 
                             {/* CTA Block */}
                             <div className="font-serif text-4xl lg:text-5xl xl:text-6xl text-zinc-900 leading-tight">
-                                I would love to{' '}
                                 <span className="whitespace-nowrap">
-                                    <a
-                                        href="mailto:morgan@mor-gan.com"
-                                        className="text-zinc-500 hover:text-zinc-800 cursor-pointer transition-all duration-200 decoration-zinc-300 hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm"
-                                    >
-                                        work together
-                                    </a>
+                                    <SimpleTrigger
+                                        label="Say hello"
+                                        isActive={activeIdentity === 'contact'}
+                                        onClick={() => toggleIdentity('contact')}
+                                    />
                                     !
                                 </span>
                             </div>
@@ -303,7 +308,7 @@ const InteractiveBio = () => {
                             className="col-span-5 mt-2"
                         >
                             <AnimatePresence mode="wait">
-                                {activeIdentity && BIO_CONTENT[activeIdentity] && (
+                                {activeIdentity && BIO_CONTENT[activeIdentity] ? (
                                     <motion.div
                                         key={activeIdentity}
                                         initial={{ opacity: 0, y: 20 }}
@@ -346,7 +351,7 @@ const InteractiveBio = () => {
                                             </>
                                         )}
                                     </motion.div>
-                                )}
+                                ) : null}
                             </AnimatePresence>
                         </div>
                     </div>
@@ -356,7 +361,7 @@ const InteractiveBio = () => {
     );
 };
 
-const SimpleTrigger = ({ label, isActive, onClick }) => {
+const SimpleTrigger = ({ label, isActive, onClick, showHint }) => {
     return (
         <button
             type="button"
@@ -366,10 +371,164 @@ const SimpleTrigger = ({ label, isActive, onClick }) => {
             className={`
                 cursor-pointer transition-all duration-200 focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:outline-none rounded-sm
                 ${isActive ? 'text-zinc-900 underline decoration-zinc-900 decoration-2 underline-offset-4' : 'text-zinc-500 hover:text-zinc-800'}
+                ${showHint && !isActive ? 'animate-hint-underline' : ''}
             `}
         >
             {label}
         </button>
+    );
+};
+
+// Photo data for the scattered polaroid gallery
+const POLAROID_PHOTOS = [
+    {
+        src: '/images/gallery/morgan-speaking.jpg',
+        alt: 'Morgan speaking at CSPA National Conference',
+        caption: 'CSPA Nationals',
+        rotation: -4,
+        x: '5%',
+        y: '0%',
+        z: 3,
+        aspect: '4/3',
+    },
+    {
+        src: '/images/gallery/headshot.jpg',
+        alt: 'Portrait by Mark Mann',
+        caption: 'photo by Mark Mann',
+        rotation: 3,
+        x: '45%',
+        y: '-5%',
+        z: 5,
+        aspect: '3/4',
+    },
+    {
+        src: '/images/gallery/kspa-speaking.jpg',
+        alt: 'Presenting on Gaggle and Free Press Rights at KU',
+        caption: 'Gaggle & Free Press, KU',
+        rotation: -2,
+        x: '2%',
+        y: '52%',
+        z: 2,
+        aspect: '3/4',
+    },
+    {
+        src: '/images/gallery/sunset-lake.jpg',
+        alt: 'Sunset at Clinton Lake',
+        caption: 'Clinton Lake',
+        rotation: 5,
+        x: '52%',
+        y: '48%',
+        z: 4,
+        aspect: '4/3',
+    },
+    {
+        src: '/images/gallery/bison-prairie.jpg',
+        alt: 'Bison at Tallgrass Prairie',
+        caption: 'Tallgrass Prairie',
+        rotation: -6,
+        x: '30%',
+        y: '28%',
+        z: 1,
+        aspect: '3/4',
+    },
+];
+
+// Scattered polaroid gallery — photos overlapping like they're on a table
+const PolaroidGallery = ({ compact = false }) => {
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
+    if (compact) {
+        // Mobile: show 3 polaroids in a compact overlapping cluster
+        const mobilePhotos = POLAROID_PHOTOS.slice(0, 3);
+        const mobilePositions = [
+            { rotation: -5, x: '10%', y: '0%', z: 1 },
+            { rotation: 3, x: '35%', y: '5%', z: 2 },
+            { rotation: -1, x: '22%', y: '-3%', z: 3 },
+        ];
+        return (
+            <div className="relative w-full h-48 my-4">
+                {mobilePhotos.map((photo, i) => {
+                    const pos = mobilePositions[i];
+                    return (
+                        <div
+                            key={i}
+                            className="polaroid-item absolute bg-white p-1.5 pb-8 shadow-[0_1px_8px_-2px_rgba(0,0,0,0.1),0_4px_12px_-2px_rgba(0,0,0,0.05)]"
+                            style={{
+                                transform: `rotate(${pos.rotation}deg)`,
+                                left: pos.x,
+                                top: pos.y,
+                                zIndex: pos.z,
+                                width: '120px',
+                            }}
+                        >
+                            <div className="relative overflow-hidden">
+                                <img
+                                    src={photo.src}
+                                    alt={photo.alt}
+                                    className="w-full aspect-square object-cover"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <p
+                                className="text-center text-zinc-500 mt-1"
+                                style={{ fontFamily: "'Kalam', cursive", fontSize: '0.7rem' }}
+                            >
+                                {photo.caption}
+                            </p>
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    }
+
+    // Desktop: full scattered gallery
+    return (
+        <div className="relative w-full h-full min-h-[600px]">
+            {POLAROID_PHOTOS.map((photo, i) => {
+                const isHovered = hoveredIndex === i;
+                return (
+                    <motion.div
+                        key={i}
+                        className="polaroid-item absolute bg-white p-2.5 pb-12 cursor-default"
+                        style={{
+                            left: photo.x,
+                            top: photo.y,
+                            zIndex: isHovered ? 10 : photo.z,
+                            width: photo.aspect === '3/4' ? '160px' : '190px',
+                            boxShadow: isHovered
+                                ? '0 8px 30px -5px rgba(0,0,0,0.15), 0 20px 40px -8px rgba(0,0,0,0.1)'
+                                : '0 2px 12px -3px rgba(0,0,0,0.08), 0 8px 20px -4px rgba(0,0,0,0.05)',
+                        }}
+                        animate={{
+                            rotate: isHovered ? 0 : photo.rotation,
+                            scale: isHovered ? 1.08 : 1,
+                            y: isHovered ? -8 : 0,
+                        }}
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                        onHoverStart={() => setHoveredIndex(i)}
+                        onHoverEnd={() => setHoveredIndex(null)}
+                    >
+                        <div className="relative overflow-hidden">
+                            <img
+                                src={photo.src}
+                                alt={photo.alt}
+                                className={`w-full object-cover ${photo.aspect === '3/4' ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}
+                                loading={i < 2 ? 'eager' : 'lazy'}
+                            />
+                            {/* CSS-only glisten overlay */}
+                            <div className="polaroid-glisten-overlay" />
+                        </div>
+                        <p
+                            className="text-center text-zinc-500 mt-2"
+                            style={{ fontFamily: "'Kalam', cursive", fontSize: '0.85rem' }}
+                        >
+                            {photo.caption}
+                        </p>
+                    </motion.div>
+                );
+            })}
+        </div>
     );
 };
 
@@ -414,7 +573,8 @@ const BIO_CONTENT = {
                     <a href="/Morgan_Salisbury_Resume.pdf" download className="bg-zinc-900 text-white px-8 py-4 rounded-full font-sans text-sm font-medium tracking-wide hover:bg-zinc-700 transition-colors shadow-lg shadow-zinc-200 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-900 focus-visible:outline-none">
                         Download PDF
                     </a>
-                    <span className="text-zinc-400 italic font-serif">February 2026</span>
+                    <span className="text-zinc-400 italic font-serif">{getCurrentDate()}</span>
+
                 </div>
 
                 <div className="grid grid-cols-1 gap-8 text-zinc-600">

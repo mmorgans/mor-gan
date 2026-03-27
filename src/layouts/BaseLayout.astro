@@ -4,10 +4,11 @@ import "@fontsource/newsreader/400.css";
 import "@fontsource/newsreader/400-italic.css";
 import "@fontsource/newsreader/500.css";
 import "@fontsource/newsreader/500-italic.css";
+import "@fontsource/kalam/400.css";
 import "../styles/global.css";
 
-const { title = "Morgan Salisbury" } = Astro.props;
-const description = "Morgan Salisbury";
+const { title = "Morgan Salisbury", description = "Journalist, advocate, and student at KU. Co-plaintiff in a federal civil rights lawsuit against school surveillance." } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, 'https://mor-gan.com').href;
 ---
 
 <!doctype html>
@@ -22,18 +23,18 @@ const description = "Morgan Salisbury";
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mor-gan.com/" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://mor-gan.com/" />
+    <meta property="twitter:url" content={canonicalUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href="https://mor-gan.com/" />
+    <link rel="canonical" href={canonicalUrl} />
   </head>
   <body
     class="bg-white text-zinc-900 antialiased font-serif selection:bg-zinc-200 selection:text-zinc-900"
